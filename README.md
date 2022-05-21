@@ -1,0 +1,1 @@
+# jacalculator-stable-version
