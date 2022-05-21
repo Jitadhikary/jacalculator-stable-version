@@ -1,0 +1,441 @@
+<html>
+	<head>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0"
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet">-->
+		<title>JA-Calculator</title>
+		<style type="text/css">
+			/* body{
+			font-family: 'Open Sans',sans-serif;
+			background-color: black;
+			}
+			#container{
+			width: 1000px;
+			height: 550px;
+			background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(bgImg.jpg);
+			margin: 20px auto;  
+			}
+			#calculator{
+			width: 320px;
+			height: 520px;
+			background-color: #eaedef;
+			margin: 0 auto;
+			top: 20px;
+			position: relative;
+			border-radius: 5px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			}
+			#result{
+			height: 120px;
+			}
+			#history{
+			text-align: right;
+			height: 20px;
+			margin: 0 20px;
+			padding-top: 20px;
+			font-size: 15px;
+			color: #919191;
+			}
+			#output{
+			text-align: right;
+			height: 60px;
+			margin: 10px 20px;
+			font-size: 30px;
+			}
+			#keyboard{
+			height: 400px;
+			}
+			.operator, .number, .empty{
+			width: 50px;
+			height: 50px;
+			margin: 15px;
+			float: left;
+			border-radius: 50%;
+			border-width: 0;
+			font-weight: bold;
+			font-size: 15px;
+			}
+			.number, .empty{
+			background-color: #eaedef;
+			}
+			.number, .operator{
+			cursor: pointer;
+			}
+			.operator:active, .number:active{
+			font-size: 13px;
+			}
+			.operator:focus, .number:focus, .empty:focus{
+			outline: 0;
+			}
+			button:nth-child(4){
+			font-size: 20px;
+			background-color: #20b2aa;
+			}
+			button:nth-child(8){
+			font-size: 20px;
+			background-color: #ffa500;
+			}
+			button:nth-child(12){
+			font-size: 20px;
+			background-color: #f08080;
+			}
+			button:nth-child(16){
+			font-size: 20px;
+			background-color: #7d93e0;
+			}
+			button:nth-child(20){
+			font-size: 20px;
+			background-color: #9477af;
+			} */
+			
+			*{
+			  box-sizing: border-box;
+			   /* overflow: auto; */ 
+			   font-family: Sans-Serif;
+			}
+			body{
+			  margin: 0;
+			  padding: 0;
+			  position: fixed;
+			  width: 100%;
+			  height: 100vh;
+			}
+			#container{
+			  width: 100%;
+			  height: 100vh;
+			  background-color: ;
+			  position: relative;
+			}
+			#container > #dark-thame-btn{
+			  appearance: none;
+			  -webkit-appearance: none;
+			  border: none;
+			  outline: none;
+			  width: 32px ;
+			  height: 3px ;
+			  background-color: #C5C5C5;
+			  border-radius: 2px;
+			  position: absolute;
+			  bottom: 59.2%;
+			  left: 50%;
+		    transform: translate(-50%,-50%);
+			}
+			#container > #dark-thame-btn::before{
+			  content: "";
+			  width: 5px;
+			  height: 5px;
+			  /* transform: scale(); */
+			  background-color: gray;
+			  border-radius: 100%;
+			  position: absolute;
+			  top: 50%;
+			  left: 0px;
+			  transform: translate(-0%,-50%);
+			  transition: 0.3s;
+			}
+			#container > #dark-thame-btn:checked::before{
+			  left: 100%;
+			  transform: translate(-50%,-50%);
+			  background-color: white;
+			}
+			#container > #dark-thame-btn:checked ~ #calculator > #result{
+			  background-color: black;
+			}
+			#container > #dark-thame-btn:checked ~ #calculator > #result > #history > #history-value{
+			  color: #c5c5c5;
+			}
+			#container > #dark-thame-btn:checked ~ #calculator > #result > #output > #output-value{
+			  color: white;
+			}
+			#container > #dark-thame-btn:checked ~ #calculator > #keyboard{
+			  background-color: #353535;
+			}
+			#container > #dark-thame-btn:checked ~ #calculator > #keyboard > button > .number-btn{
+			  color: white;
+			}
+			
+			
+			
+			
+			
+			
+			#container > #calculator{
+			  width: 100%;
+			  height: 100%;
+			}
+			#container > #calculator > #result{
+			  width: 100%;
+			  height: 40%;
+			  /*display: grid;
+			  grid-template-columns: auto;
+			  grid-template-rows: 45% 55%;
+			  grid-gap: px;*/
+			  padding: 2.5%;
+			  padding-top: 10%;
+			  background-color: #fdfdfd;
+			  transition: 0.3s;
+			}
+			#container > #calculator > #result > #history{
+			  width: 100%;
+			  height:45%;
+			  background-color: transparent;
+			  display: inline-block;
+			  overflow: auto;
+			}
+			#container > #calculator > #result > #history > #history-value{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+			  color: gray;
+			  font-size: 31.7px;
+			  text-align: right;
+			  background-color: transparent;
+			  /* padding: 0 10px; */
+			  display: inline-block;
+			  text-overflow: auto;
+			  overflow: auto;
+			  transition: 0.3s;
+			}
+			#container > #calculator > #result > #output{
+			  width: 100%;
+			  height: 55%;
+			  background-color: transparent;
+			  overflow: auto;
+			}
+			#container > #calculator > #result > #output > #output-value{
+			  margin: 0;
+			  color: black;
+			  font-size: 55px;
+			  text-align: right;
+			  /* padding-left: 10px;
+			  padding-right: 10px; */
+			  background-color: transparent;
+			  transition: 0.3s;
+			}
+			
+			
+			
+			
+			
+			
+			#container > #calculator > #keyboard{
+			  width: 100%;
+			  height: 60%;
+			  background-color: white;
+			  display: grid;
+			  grid-template-columns: 25% 25% 25% 25%;
+			  grid-template-rows: 20% 20% 20% 20%;
+			  user-select: none;
+			  -webkit-user-select: none;
+			  transition: 0.3s;
+			}
+			#container > #calculator > #keyboard > .equal{
+			  grid-column-start: 4;
+			  grid-column-end: 5;
+			  grid-row-start: 4;
+			  grid-row-end: 6;
+			}
+			#container > #calculator > #keyboard > button{
+			  border: none;
+			  outline: none;
+			  background-color: transparent;
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+			}
+			#container > #calculator > #keyboard > button > .btn{
+			  width: 60px;
+			  height: 60px;
+			  border-radius: 100%;
+			  background-color: ;
+			  font-size: 30px;
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+			}
+			#container > #calculator > #keyboard > button > .operator-btn{
+			  font-size: 25px;
+			  color: #26cc00;
+			}
+			#container > #calculator > #keyboard > button > .number-btn{
+			  font-size: 30px;
+			  transition: 0.3s;
+			}
+			#container > #calculator > #keyboard > button > .equal-btn{
+			  width: 3.6rem;
+			  height: 17vh;
+			  border-radius: 10px;
+			  color: white;
+			  background-color: #26cc00;
+			  /*background-color: red;*/
+			}
+			#container > #calculator > #keyboard > button:hover > .btn{
+			  background-color: rgba(0,0,0,0.0150);
+			}
+			#container > #calculator > #keyboard > button:hover > .equal-btn{
+			  background-color: #26cc00;
+			  /*background-color: red;*/
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+		  <input type="checkbox" name="dark-thame-btn" id="dark-thame-btn" />
+			<div id="calculator">
+				<div id="result">
+					<div id="history">
+						<p id="history-value"></p>
+					</div>
+					<div id="output">
+						<p id="output-value"></p>
+					</div>
+				</div>
+				<div id="keyboard">
+					<button class="operator" id="clear">
+					  <div class="btn operator-btn">C</div>
+					</button>
+					<button class="operator" id="/">
+					  <div class="btn operator-btn">&#247;</div>
+					</button>
+					<button class="operator" id="*">
+					  <div class="btn operator-btn">&times;</div>
+					</button>
+					<button class="operator" id="backspace">
+					  <div class="btn operator-btn">⌫</div>
+					</button>
+					
+					
+					<button class="number" id="7">
+					  <div class="btn number-btn">7</div>
+					</button>
+					<button class="number" id="8">
+					  <div class="btn number-btn">8</div>
+					</button>
+					<button class="number" id="9">
+					  <div class="btn number-btn">9</div>
+					</button>
+					<button class="operator" id="-">
+					  <div class="btn operator-btn">-</div>
+					</button>
+					
+					<button class="number" id="4">
+					  <div class="btn number-btn">4</div>
+					</button>
+					<button class="number" id="5">
+					  <div class="btn number-btn">5</div>
+					</button>
+					<button class="number" id="6">
+					  <div class="btn number-btn">6</div>
+					</button>
+					<button class="operator" id="+">
+					  <div class="btn operator-btn">+</div>
+					</button>
+					
+					<button class="number" id="1">
+					  <div class="btn number-btn">1</div>
+					</button>
+					<button class="number" id="2">
+					  <div class="btn number-btn">2</div>
+					</button>
+					<button class="number" id="3">
+					  <div class="btn number-btn">3</div>
+					</button>
+					<button class="operator equal" id="=">
+					  <div class="btn operator-btn equal-btn">=</div>
+					</button>
+					
+					<button class="operator" id="%">
+					  <div class="btn number-btn">%</div>
+					</button>
+					<button class="number" id="0">
+					  <div class="btn number-btn">0</div>
+					</button>
+					<button class="operator" id=".">
+					  <div class="btn number-btn">.</div>
+					</button>
+					
+				</div>
+			</div>
+		</div>
+		<script>
+			function getHistory(){
+			return document.getElementById("history-value").innerText;
+			}
+			function printHistory(num){
+			document.getElementById("history-value").innerText=num;
+			}
+			function getOutput(){
+			return document.getElementById("output-value").innerText;
+			}
+			function printOutput(num){
+			if(num==""){
+			document.getElementById("output-value").innerText=num;
+			}
+			else{
+			document.getElementById("output-value").innerText=getFormattedNumber(num);
+			}	
+			}
+			function getFormattedNumber(num){
+			if(num=="-"){
+			return "";
+			}
+			var n = Number(num);
+			var value = n.toLocaleString("en");
+			return value;
+			}
+			function reverseNumberFormat(num){
+			return Number(num.replace(/,/g,''));
+			}
+			var operator = document.getElementsByClassName("operator");
+			for(var i =0;i<operator.length;i++){
+			operator[i].addEventListener('click',function(){
+			if(this.id=="clear"){
+			printHistory("");
+			printOutput("");
+			}
+			else if(this.id=="backspace"){
+			var output=reverseNumberFormat(getOutput()).toString();
+			if(output){//if output has a value
+			output= output.substr(0,output.length-1);
+			printOutput(output);
+			}
+			}
+			else{
+			var output=getOutput();
+			var history=getHistory();
+			if(output==""&&history!=""){
+			if(isNaN(history[history.length-1])){
+			history= history.substr(0,history.length-1);
+			}
+			}
+			if(output!="" || history!=""){
+			output= output==""?output:reverseNumberFormat(output);
+			history=history+output;
+			if(this.id=="="){
+			var result=eval(history);
+			printOutput(result);
+			printHistory("");
+			}
+			else{
+			history=history+this.id;
+			printHistory(history);
+			printOutput("");
+			}
+			}
+			}
+			
+			});
+			}
+			var number = document.getElementsByClassName("number");
+			for(var i =0;i<number.length;i++){
+			number[i].addEventListener('click',function(){
+			var output=reverseNumberFormat(getOutput());
+			if(output!=NaN){ //if output is a number
+			output=output+this.id;
+			printOutput(output);
+			}
+			});
+			}
+		</script>
+	</body>
+</html>
